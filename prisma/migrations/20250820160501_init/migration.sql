@@ -8,6 +8,8 @@ CREATE TABLE "public"."Trip" (
     "description" TEXT,
     "start_date" TIMESTAMP(3) NOT NULL,
     "end_date" TIMESTAMP(3),
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Trip_pkey" PRIMARY KEY ("trip_id")
 );
@@ -19,6 +21,8 @@ CREATE TABLE "public"."Participant" (
     "last_name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Participant_pkey" PRIMARY KEY ("participant_id")
 );
@@ -30,6 +34,8 @@ CREATE TABLE "public"."Expense" (
     "category" "public"."Category" NOT NULL,
     "description" TEXT,
     "trip_id" INTEGER NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Expense_pkey" PRIMARY KEY ("expense_id")
 );
