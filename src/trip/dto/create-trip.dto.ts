@@ -1,10 +1,4 @@
-import {
-  IsArray,
-  IsDateString,
-  IsOptional,
-  IsString,
-  MinLength,
-} from "class-validator";
+import { IsDateString, IsOptional, IsString, MinLength } from "class-validator";
 
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
@@ -46,17 +40,4 @@ export class CreateTripDto {
   )
   @IsOptional()
   endDate?: string;
-
-  @ApiPropertyOptional({
-    description: "Array of expenses associated with the trip",
-    isArray: true,
-    readOnly: true,
-  })
-  @IsArray()
-  @IsOptional()
-  expenses?: unknown[];
-
-  @IsArray()
-  @IsOptional()
-  participants?: unknown[];
 }

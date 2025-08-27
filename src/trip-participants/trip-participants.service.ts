@@ -66,10 +66,6 @@ export class TripParticipantsService {
       },
     });
 
-    if (participants.length === 0) {
-      throw new NotFoundException("No participants found for this trip");
-    }
-
     return participants;
   }
 
@@ -91,10 +87,6 @@ export class TripParticipantsService {
         participant: true,
       },
     });
-
-    if (trips.length === 0) {
-      throw new NotFoundException("No trips found for this participant");
-    }
 
     return trips;
   }
