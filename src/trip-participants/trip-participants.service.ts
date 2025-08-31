@@ -104,10 +104,12 @@ export class TripParticipantsService {
       throw new NotFoundException("Trip participant not found");
     }
 
-    await this.databaseService.tripParticipants.deleteMany({
+    await this.databaseService.tripParticipants.delete({
       where: {
-        trip_id: tripId,
-        participant_id: participantId,
+        trip_id_participant_id: {
+          trip_id: tripId,
+          participant_id: participantId,
+        },
       },
     });
 
