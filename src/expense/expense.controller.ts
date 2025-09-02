@@ -16,7 +16,12 @@ import {
   Post,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateExpenseDto } from "./dto/create-expense.dto";
 import { ExpenseResponseDto } from "./dto/expense-response.dto";
@@ -25,6 +30,7 @@ import { ExpenseService } from "./expense.service";
 
 @Controller("expense")
 @ApiTags("expenses")
+@ApiBearerAuth()
 export class ExpenseController {
   constructor(private readonly expenseService: ExpenseService) {}
 

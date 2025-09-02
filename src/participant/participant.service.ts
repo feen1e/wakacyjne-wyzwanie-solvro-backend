@@ -15,14 +15,17 @@ import { UpdateParticipantDto } from "./dto/update-participant.dto";
 export class ParticipantService {
   constructor(private databaseService: DatabaseService) {}
 
-  async create(createParticipantDto: CreateParticipantDto) {
+  async create(
+    createParticipantDto: CreateParticipantDto,
+    currentUser: UserMetadata,
+  ) {
     return this.databaseService.participant.create({
       data: {
         first_name: createParticipantDto.firstName,
         last_name: createParticipantDto.lastName,
         email: createParticipantDto.email,
         phone: createParticipantDto.phone,
-        created_by_user_id: createParticipantDto.createdByUserId,
+        created_by_user_id: currentUser.userId,
       },
     });
   }

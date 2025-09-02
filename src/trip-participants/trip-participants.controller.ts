@@ -17,7 +17,12 @@ import {
   Req,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateTripParticipantDto } from "./dto/create-trip-participant.dto";
 import { TripParticipantResponseDto } from "./dto/trip-participant-response.dto";
@@ -25,6 +30,7 @@ import { TripParticipantsService } from "./trip-participants.service";
 
 @Controller("trip-participants")
 @ApiTags("trip-participants")
+@ApiBearerAuth()
 export class TripParticipantsController {
   constructor(
     private readonly tripParticipantsService: TripParticipantsService,

@@ -19,7 +19,12 @@ import {
   Req,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateTripDto } from "./dto/create-trip.dto";
 import { TripResponsePrivateDto } from "./dto/trip-response-private.dto";
@@ -29,6 +34,7 @@ import { TripService } from "./trip.service";
 
 @Controller("trip")
 @ApiTags("trips")
+@ApiBearerAuth()
 export class TripController {
   constructor(private readonly tripService: TripService) {}
 

@@ -14,7 +14,12 @@ import {
   Request,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { UserMetadata } from "./dto/user-metadata.dto";
 import { UserUpdateResponseDto } from "./dto/user-update-response.dto";
@@ -23,6 +28,7 @@ import { UsersService } from "./users.service";
 
 @Controller("users")
 @ApiTags("users")
+@ApiBearerAuth()
 export class UsersController {
   constructor(private usersService: UsersService) {}
 

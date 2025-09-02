@@ -15,7 +15,12 @@ import {
   Req,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 
 import { CreateParticipantDto } from "./dto/create-participant.dto";
 import { ParticipantResponseDto } from "./dto/participant-response.dto";
@@ -24,6 +29,7 @@ import { ParticipantService } from "./participant.service";
 
 @Controller("participant")
 @ApiTags("participants")
+@ApiBearerAuth()
 export class ParticipantController {
   constructor(private readonly participantService: ParticipantService) {}
 
@@ -44,8 +50,15 @@ export class ParticipantController {
     description: "Invalid input data",
   })
   @UseGuards(AuthGuard)
-  async create(@Body() createParticipantDto: CreateParticipantDto) {
-    return this.participantService.create(createParticipantDto);
+  async create(
+    @Body() createParticipantDto: CreateParticipantDto,
+    @Req() request: RequestWithUser,
+  ) {
+    const user = request.user;
+    if (user == null) {
+      throw new Error("Authenticated user not found in request");
+    }
+    return this.participantService.create(createParticipantDto, user);
   }
 
   @Get()

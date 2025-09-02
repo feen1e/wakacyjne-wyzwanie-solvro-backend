@@ -1,4 +1,4 @@
-import { IsEmail, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsOptional, IsString } from "class-validator";
 
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
@@ -31,11 +31,4 @@ export class CreateParticipantDto {
   @IsString()
   @IsOptional()
   phone?: string;
-
-  @ApiProperty({
-    description: "The ID of the user who created the participant",
-    example: 1,
-  })
-  @IsNumber()
-  createdByUserId: number;
 }
