@@ -15,6 +15,7 @@ import {
   ParseIntPipe,
   Post,
   Req,
+  UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
 import {
@@ -65,7 +66,9 @@ export class TripParticipantsController {
     @Req() request: RequestWithUser,
   ) {
     if (request.user == null) {
-      throw new Error("Authenticated user not found in request.");
+      throw new UnauthorizedException(
+        "Authenticated user not found in request.",
+      );
     }
     return this.tripParticipantsService.create(
       createTripParticipantDto,
@@ -86,7 +89,9 @@ export class TripParticipantsController {
   @UseGuards(AuthGuard)
   async findAll(@Req() request: RequestWithUser) {
     if (request.user == null) {
-      throw new Error("Authenticated user not found in request.");
+      throw new UnauthorizedException(
+        "Authenticated user not found in request.",
+      );
     }
     return this.tripParticipantsService.findAll(request.user);
   }
@@ -109,7 +114,9 @@ export class TripParticipantsController {
     @Req() request: RequestWithUser,
   ) {
     if (request.user == null) {
-      throw new Error("Authenticated user not found in request.");
+      throw new UnauthorizedException(
+        "Authenticated user not found in request.",
+      );
     }
     return this.tripParticipantsService.findParticipantsOfTrip(
       id,
@@ -135,7 +142,9 @@ export class TripParticipantsController {
     @Req() request: RequestWithUser,
   ) {
     if (request.user == null) {
-      throw new Error("Authenticated user not found in request.");
+      throw new UnauthorizedException(
+        "Authenticated user not found in request.",
+      );
     }
     return this.tripParticipantsService.findTripsByParticipant(
       id,
@@ -163,7 +172,9 @@ export class TripParticipantsController {
     @Req() request: RequestWithUser,
   ) {
     if (request.user == null) {
-      throw new Error("Authenticated user not found in request.");
+      throw new UnauthorizedException(
+        "Authenticated user not found in request.",
+      );
     }
     return this.tripParticipantsService.remove(
       tripId,
