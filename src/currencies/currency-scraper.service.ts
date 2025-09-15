@@ -12,7 +12,9 @@ export class CurrencyScraperService {
   constructor(private readonly currencyService: CurrenciesService) {}
   private readonly logger = new Logger(CurrencyScraperService.name);
 
-  @Cron("0 */5 * * * *")
+  @Cron("0 */5 * * * *", {
+    disabled: process.env.NODE_ENV === "test",
+  })
   async handleCron() {
     await this.scrapeRates();
   }
